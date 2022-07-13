@@ -61,20 +61,22 @@ CFLAGS = -Wall -Wextra -Werror
 
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
-	@echo "Compiling: $<"
+	@echo "\033[33mCompiling: $<"
 	@$(CC) $(CFLAGS) -c -I$(HEADER_PATH) $< -o $@
 
 $(NAME): $(OBJECTS_PREFIXED)
 	@ar rcs $(NAME) $(OBJECTS_PREFIXED)
-	@echo "Libft Done !"
+	@echo "\033[32mlibft.a created!"
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)
+	@echo "removed: obj files (libft.a)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "removed: libft.a"
 
 re: fclean all
 

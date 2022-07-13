@@ -6,11 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:22:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/12 16:22:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:37:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_stdio.h"
+#include "../includes/ft_printf.h"
 
 int	is_format_specifier(const char *str)
 {
