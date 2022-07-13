@@ -26,6 +26,8 @@ LIB = libft.a
 all : $(NAME)
 
 $(NAME) : $(LIB) $(OBJS_PREFIXED)
+	@ar rcs $(NAME) $(OBJS_PREFIXED)
+	@echo "\033[32mlibftprintf.a created!"
 
 $(LIB) :
 	@make -C $(LIBFT_DIR)

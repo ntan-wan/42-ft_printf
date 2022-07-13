@@ -72,7 +72,7 @@ all: $(NAME)
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@echo "removed: obj files (libft.a)"
+	@echo "\033[31mremoved: obj files (libft.a)"
 
 fclean: clean
 	@rm -f $(NAME)
