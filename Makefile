@@ -49,4 +49,4 @@ fclean : clean
 re : fclean all
 
 test :
-	$(CC) $(CCFLAGS) main.c $(NAME)
+	$(CC) $(CCFLAGS) main.c $(NAME) ./libft/libft.a

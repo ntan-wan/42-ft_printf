@@ -8,4 +8,6 @@
 
 int	is_format_specifier(const char *str);
 
+int	ft_printf(const char *str, ...);
+
 #endif
