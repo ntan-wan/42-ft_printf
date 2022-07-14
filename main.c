@@ -5,8 +5,8 @@ int main (int ac, char **av)
 {
 	const char *str;
 
-	ft_printf((const char *)av[1]);
-	printf("%s\n",(const char *)av[1]);
+	ft_printf((const char *)av[1], "OK!");
+	//printf("%0+ydrf\n",45.234);
 
 	return (0);
 }

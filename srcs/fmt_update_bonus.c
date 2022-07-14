@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_format_specifier.c                              :+:      :+:    :+:   */
+/*   fmt_update_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 16:22:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/13 09:37:07 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/07/14 15:33:57 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/07/14 15:38:17 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	is_format_specifier(const char *str)
+void	fmt_update_bonus(char c, t_fmt *fmt)
 {
-	size_t	i;
-	size_t	j;
-	char	*conver;
-
-	i = 0;
-	j = 0;
-	conver = "cspdiuxX%";
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			while (conver[j])
-			{
-				if (str[i + 1] == conver[j])
-					return (1);
-				j++;
-			}
-		}
-		i++;
-	}
-	return (0);
+	if (c == '-')
+		fmt->negative = 1;
+	else if (c == '0')
+		fmt->zero = 1;
+	else if (c == '.')
+		fmt->dot = 1;
+	else if (c == '#')
+		fmt->hash = 1;
+	else if (c == ' ')
+		fmt->space = 1;
+	else if (c == '+')
+		fmt->plus = 1;
 }
