@@ -34,14 +34,16 @@ SRCS_PREFIXED = $(addprefix $(SRCS_PATH), $(SRCS))
 
 OBJS_PREFIXED = $(addprefix $(OBJS_PATH), $(OBJS))
 
-LIBFT_DIR = libft
+LIBFT_DIR = libft/
+
+LIBFT_OBJS = $(LIBFT_DIR)objs/*.o
 
 LIB = libft.a
 
 all : $(NAME)
 
 $(NAME) : $(LIB) $(OBJS_PREFIXED)
-	@ar rcs $(NAME) $(OBJS_PREFIXED)
+	@ar rcs $(NAME) $(OBJS_PREFIXED) $(LIBFT_OBJS)
 	@echo "\033[32mlibftprintf.a created!"
 
 $(LIB) :

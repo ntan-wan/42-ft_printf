@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:46:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/15 19:39:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/16 06:30:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ int	check_base(char *base, int base_length)
 
 void	ft_putnbr_base(unsigned long nbr, char *base)
 {
-	int				i;
 	unsigned long	base_length;
 
-	i = 0;
 	base_length = length(base);
 	if (check_base(base, base_length) == 1)
 	{
