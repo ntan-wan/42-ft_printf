@@ -3,10 +3,11 @@
 
 int main (int ac, char **av)
 {
-	const char *str;
+	char c;
 
-	ft_printf((const char *)av[1]);
-	//printf("%0+ydrf\n",45.234);
-
+	c = 'a';
+	ft_printf((const char *)av[1], (const char *)av[2], (const char *)av[3], (const char *)av[4]);
+	printf("\n");
+	printf((const char *)av[1], (const char *)av[2], (const char *)av[3], (const char *)av[4]);
 	return (0);
 }

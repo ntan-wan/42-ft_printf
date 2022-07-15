@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   check_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/15 17:04:52 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/07/15 17:02:15 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/07/15 17:02:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
-//
-#include <stdio.h>
 
-int	ft_printf(const char *str, ...)
-{	
-	size_t	i;
-	t_fmt	fmt;
-	va_list	args;
+void	check_flags(const char *str, size_t *ptr_i, t_fmt *fmt)
+{
+	size_t	next_c;
 
-	i = 0;
-	fmt_init(&fmt);
-	va_start(args, str);
-	while (str[i])
+	next_c = (*ptr_i) + 1;
+	while (str[next_c] && !(ft_strchr("cspdiuxX%", str[next_c])))
 	{
-		if (str[i] == '%')
-		{
-			check_flags(str, &i, &fmt);
-			fmt_update(str[i + 1], &fmt);
-			fmt_operation(&fmt, args);
-			fmt_reset(&fmt);
-			i++;
-		}
+		if (flag_check_bonus(str[next_c]))
+			fmt_update_bonus(str[next_c], fmt);
 		else
-			write(1, &str[i], 1);
-		i++;
+		{
+			fmt_reset(fmt);
+			break ;
+		}
+		(*ptr_i)++;
 	}
-	return (0);
 }

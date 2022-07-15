@@ -11,11 +11,22 @@ SRCS_PATH = srcs/
 OBJS_PATH = $(SRCS_PATH)objs/
 
 SRCS = ft_printf.c \
+	flag_check_bonus.c \
 	fmt_init.c \
 	fmt_reset.c \
 	fmt_update.c \
-	fmt_update_bonus.c\
-	flag_check_bonus.c \
+	fmt_update_bonus.c \
+	fmt_operation.c \
+	print_c.c \
+	print_s.c \
+	print_ptr.c \
+	print_decimal.c \
+	print_hexa_lower.c \
+	print_hexa_upper.c \
+	print_unsi.c \
+	print_percent.c \
+	ft_putnbr_base.c \
+	check_flags.c 
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
