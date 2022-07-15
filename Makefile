@@ -34,7 +34,7 @@ $(NAME) : $(LIB) $(OBJS_PREFIXED)
 	@echo "\033[32mlibftprintf.a created!"
 
 $(LIB) :
-	@make -C $(LIBFT_DIR)
+	@make bonus -C $(LIBFT_DIR)
 
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)

@@ -82,4 +82,4 @@ re: fclean all
 
 bonus: $(OBJECTS_BONUS_PREFIXED)
 	@ar rcs $(NAME) $(OBJECTS_BONUS_PREFIXED)
-	@echo "Libft Bonus Done !"
+	@echo "\033[32mLibft Bonus Done !"

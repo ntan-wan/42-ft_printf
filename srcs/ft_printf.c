@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/14 18:33:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/15 10:37:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,42 @@
 #include "../libft/libft.h"
 //
 #include <stdio.h>
+
+//
+void  print(void *content)
+{
+	printf("%s\n", (char *)content);
+}
 int	ft_printf(const char *str, ...)
 {	
+
+	t_list	*head;
+	char	c;
 	size_t	i;
+	
+	i = 0;
+	head = NULL;
+	while (str[i] != '0')
+	{	
+		//c = str[i];
+		ft_lstadd_back(&head, ft_lstnew(str));
+		i++;
+	}
+	ft_lstiter(head, &print);
+
+	return (0);
+
+
+
+
+
+
+
+
+
+
+
+	/*size_t	i;
 	t_fmt	fmt;
 
 	i = 0;
@@ -25,7 +58,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i++] == '%')
 		{
-		//need reset fmt here for next iteration
+			//need reset fmt here for next iteration
 			while (str[i] && !(ft_strchr("cspdiuxX%", str[i])))
 			{
 				if (flag_check_bonus(str[i]))
@@ -38,6 +71,7 @@ int	ft_printf(const char *str, ...)
 				i++;
 			}
 			fmt_update(str[i], &fmt);
+			fmt_operation(&fmt);
 		}
 		i++;
 	}
@@ -57,5 +91,5 @@ int	ft_printf(const char *str, ...)
 	printf("hash = %d\n", fmt.hash);
 	printf("space = %d\n", fmt.space);
 	printf("plus = %d\n", fmt.plus);
-	return (0);
+	return (0);*/
 }
