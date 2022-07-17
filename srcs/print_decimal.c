@@ -6,22 +6,22 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:08:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/16 12:11:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 00:45:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	print_decimal(va_list args)
+int	print_decimal(int num)
 {
-	char	*num;
-	int	print_length;
+	char	*num_c;
+	int		print_len;
 
-	print_length = 0;
-	num = ft_itoa(va_arg(args, int));
-	print_length = string_length(num);
-	ft_putstr_fd(num, 1);
-	free(num);
-	return (print_length);
+	print_len = 0;
+	num_c = ft_itoa(num);
+	print_len += ft_strlen(num_c);
+	ft_putstr_fd(num_c, 1);
+	free(num_c);
+	return (print_len);
 }

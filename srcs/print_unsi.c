@@ -6,12 +6,18 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/17 11:31:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 00:20:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
+
+// Created ft_num_len to count number of digits in order to allocate appropriate
+// memory to it.
+
+// Created uitoa instead of using itoa because itoa does not accept
+// unsgined int.
 
 int	ft_num_len(unsigned int num)
 {
@@ -49,18 +55,15 @@ char	*ft_uitoa(unsigned int n)
 	return (num);
 }
 
-
-int	print_unsi(va_list args)
+int	print_unsi(unsigned int unsi_num)
 {
-	unsigned int	unsi_num;
-	char			*unsi_num_c;
-	int		print_length;
+	char		*unsi_num_c;
+	int			print_len;
 
-	print_length = 0;
-	unsi_num = va_arg(args, unsigned int);
+	print_len = 0;
 	unsi_num_c = ft_uitoa(unsi_num);
-	print_length += ft_num_len(unsi_num);
+	print_len += ft_num_len(unsi_num);
 	ft_putstr_fd(unsi_num_c, 1);
 	free(unsi_num_c);
-	return (print_length);
+	return (print_len);
 }

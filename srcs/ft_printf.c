@@ -6,43 +6,47 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/16 09:24:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 01:34:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
-//
-#include <stdio.h>
+
+void	fmt_process(va_list args, t_fmt *fmt, int *print_len)
+{
+	//check_flags(str, i, fmt);
+	(*print_len) += fmt_operation(fmt, args);
+	//fmt_reset(&fmt);
+}
 
 int	ft_printf(const char *str, ...)
 {	
 	size_t	i;
-	t_fmt	fmt;
 	va_list	args;
-	int	print_length;
+	int		print_len;
+	t_fmt	fmt;
 
 	i = 0;
-	fmt_init(&fmt);
+	print_len = 0;
+	//fmt_init(&fmt);
 	va_start(args, str);
-	print_length = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			check_flags(str, &i, &fmt);
+			fmt_init(&fmt);
 			fmt_update(str[i + 1], &fmt);
-			print_length += fmt_operation(&fmt, args);
-			fmt_reset(&fmt);
+			fmt_process(args, &fmt, &print_len);
 			i++;
 		}
 		else
 		{
 			ft_putchar_fd(str[i], 1);
-			print_length++;
-			//write(1, &str[i], 1);
+			print_len++;
 		}
 		i++;
 	}
-	return (print_length);
+	va_end(args);
+	return (print_len);
 }

@@ -21,13 +21,10 @@ SRCS = ft_printf.c \
 	print_s.c \
 	print_ptr.c \
 	print_decimal.c \
-	print_hexa_lower.c \
-	print_hexa_upper.c \
+	print_hexa.c \
 	print_unsi.c \
 	print_percent.c \
-	ft_putnbr_base.c \
 	check_flags.c \
-	string_length.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
