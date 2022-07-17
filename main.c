@@ -3,11 +3,10 @@
 
 int main (int ac, char **av)
 {
-	char c;
-
-	c = 'a';
-	ft_printf((const char *)av[1], (const char *)av[2], (const char *)av[3], (const char *)av[4]);
-	printf("\n");
-	printf((const char *)av[1], (const char *)av[2], (const char *)av[3], (const char *)av[4]);
+	//printf("%d\n",printf("%5s", "apple"));
+	printf("%d\n",printf("%020s", "apple"));
+	//printf("\n");
+	//printf("%d\n",ft_printf("%x", -1));
 	return (0);
+//EST(10, print(" NULL %s NULL ", NULL));
 }

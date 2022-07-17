@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/15 19:36:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/16 11:32:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,27 @@ void	fmt_update(char c, t_fmt *fmt);
 
 void	fmt_update_bonus(char c, t_fmt *fmt);
 
-void	fmt_operation(t_fmt *fmt, va_list args);
+int	fmt_operation(t_fmt *fmt, va_list args);
 
-void	print_c(va_list args);
+int	print_c(va_list args);
 
-void	print_s(va_list args);
+int	print_s(va_list args);
 
-void	print_ptr(va_list args);
+int	print_ptr(va_list args);
 
-void	print_decimal(va_list args);
+int	print_decimal(va_list args);
 
-void	print_hexa_lower(va_list args);
+int	print_hexa_lower(va_list args);
 
-void	print_hexa_upper(va_list args);
+int	print_hexa_upper(va_list args);
 
-void	print_percent(void);
+int	print_percent(void);
 
-void	print_unsi(va_list args);
+int	print_unsi(va_list args);
 
-void	ft_putnbr_base(unsigned long nbr, char *base);
+int	ft_putnbr_base_count(unsigned long nbr, char *base);
+
+int	string_length(char *str);
 
 void	check_flags(const char *str, size_t *ptr_i, t_fmt *fmt);
 

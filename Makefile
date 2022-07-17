@@ -26,7 +26,8 @@ SRCS = ft_printf.c \
 	print_unsi.c \
 	print_percent.c \
 	ft_putnbr_base.c \
-	check_flags.c 
+	check_flags.c \
+	string_length.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
@@ -44,7 +45,7 @@ all : $(NAME)
 
 $(NAME) : $(LIB) $(OBJS_PREFIXED)
 	@ar rcs $(NAME) $(OBJS_PREFIXED) $(LIBFT_OBJS)
-	@echo "\033[32mlibftprintf.a created!"
+	@echo "\033[32mlibftprintf.a Done!"
 
 $(LIB) :
 	@make bonus -C $(LIBFT_DIR)
@@ -66,4 +67,4 @@ fclean : clean
 re : fclean all
 
 test :
-	$(CC) $(CCFLAGS) main.c $(NAME) ./libft/libft.a
+	$(CC) $(CCFLAGS) main.c $(NAME)

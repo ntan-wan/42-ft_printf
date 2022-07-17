@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:46:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/16 06:30:35 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:44:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,25 @@ int	check_base(char *base, int base_length)
 	return (1);
 }
 
-void	ft_putnbr_base(unsigned long nbr, char *base)
+int	ft_putnbr_base_count(unsigned int nbr, char *base)
 {
-	unsigned long	base_length;
-
+	unsigned int	base_length;
+	int		count;
+	
 	base_length = length(base);
+	count = 0;
 	if (check_base(base, base_length) == 1)
 	{
 		if (nbr >= base_length)
 		{
-			ft_putnbr_base(nbr / base_length, base);
-			ft_putnbr_base(nbr % base_length, base);
+			count += ft_putnbr_base_count(nbr / base_length, base);
+			count += ft_putnbr_base_count(nbr % base_length, base);
 		}
 		else
+		{
 			ft_putchar(base[nbr]);
+			count++;
+		}
 	}
+	return (count);
 }

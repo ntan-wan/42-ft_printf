@@ -6,14 +6,15 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:26:10 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/15 19:45:02 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:48:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void	print_percent(void)
+int	print_percent(void)
 {
 	ft_putchar_fd('%', 1);
+	return (1);
 }

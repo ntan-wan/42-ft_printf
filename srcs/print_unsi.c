@@ -6,18 +6,20 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/15 19:37:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/17 11:31:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_num_len(unsigned	int num)
+int	ft_num_len(unsigned int num)
 {
 	int	len;
 
 	len = 0;
+	if (num == 0)
+		len++;
 	while (num != 0)
 	{
 		len++;
@@ -35,6 +37,8 @@ char	*ft_uitoa(unsigned int n)
 	num = (char *)malloc(sizeof(char) * (len + 1));
 	if (!num)
 		return (0);
+	if (n == 0)
+		num[0] = '0';
 	num[len] = '\0';
 	while (n != 0)
 	{
@@ -45,12 +49,18 @@ char	*ft_uitoa(unsigned int n)
 	return (num);
 }
 
-void	print_unsi(va_list args)
+
+int	print_unsi(va_list args)
 {
 	unsigned int	unsi_num;
 	char			*unsi_num_c;
+	int		print_length;
 
+	print_length = 0;
 	unsi_num = va_arg(args, unsigned int);
 	unsi_num_c = ft_uitoa(unsi_num);
+	print_length += ft_num_len(unsi_num);
 	ft_putstr_fd(unsi_num_c, 1);
+	free(unsi_num_c);
+	return (print_length);
 }
