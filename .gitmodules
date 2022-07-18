@@ -1,6 +1,0 @@
-[submodule "tester1"]
-	path = tester1
-	url = https://github.com/paulo-santana/ft_printf_tester
-[submodule "tester2"]
-	path = tester2
-	url = https://github.com/Tripouille/printfTester
