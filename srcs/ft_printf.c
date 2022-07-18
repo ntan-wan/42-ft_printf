@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 19:16:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:33:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	fmt_process(const char *str, va_list args, size_t *ptr_i)
 {
 	t_fmt	fmt;
 	int		print_len;
-
+	
 	fmt_init(&fmt);
 	while (str[(*ptr_i) + 1] && !ft_strchr("cspdiuxX%", str[(*ptr_i) + 1]))
 	{

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 22:13:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 13:52:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 23:33:08 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	fmt_init(t_fmt *fmt)
 {
 	fmt->c = 0;
+	fmt->print_len = 0;
 	fmt->str = 0;
 	fmt->ptr = 0;
 	fmt->decimal = 0;

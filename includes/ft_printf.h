@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 18:48:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 23:32:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_fmt
 {
 	va_list	args;
 	int		c;
+	int		print_len;
 	int		str;
 	int		ptr;
 	int		decimal;
