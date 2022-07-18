@@ -6,11 +6,14 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 00:41:40 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/14 12:49:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:48:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+// fmt_update stores informations regarding the type of format specifier it
+// is currently using.
 
 void	fmt_update(char c, t_fmt *fmt)
 {

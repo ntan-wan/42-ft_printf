@@ -6,12 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 10:32:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:39:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
+
+// fmt_update = update struct fmt where it stores informations of what
+// format specifier it is using.
+// fmt_operation = runs particular operation based on the format specifier.
 
 int	fmt_process(const char *str, size_t *ptr_i, va_list args)
 {

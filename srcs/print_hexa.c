@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 00:44:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:55:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 // print_ptr.
 // The only difference is the data type parameter,
 // i.e,unsigned int (hexa) vs unsigned long (ptr).
+// ft_put_hexa is a recursive function. The purpose of minus 10 is to align
+// number "10" with character 'a/A'.
 
 int	ft_hexa_len(unsigned int num)
 {

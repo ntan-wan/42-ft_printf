@@ -13,7 +13,6 @@ OBJS_PATH = $(SRCS_PATH)objs/
 SRCS = ft_printf.c \
 	flag_check_bonus.c \
 	fmt_init.c \
-	fmt_reset.c \
 	fmt_update.c \
 	fmt_update_bonus.c \
 	fmt_operation.c \

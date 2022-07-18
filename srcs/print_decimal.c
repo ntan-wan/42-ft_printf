@@ -6,12 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:08:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 00:45:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:51:58 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
+
+// Used ft_itoa to change number to character.
+// Calculate the number of characters produced by itoa with ft_strlen.
+// Print characters and return the length of characters.
 
 int	print_decimal(int num)
 {

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 00:20:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:04:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 // Created uitoa instead of using itoa because itoa does not accept
 // unsgined int.
+
+// uitoa starts placing character from the end of the 'array' first, gradually
+// moving to the start of the 'array'. "% 10" is used to get the remainder,
+// i.e, get the last digit of the number first.
 
 int	ft_num_len(unsigned int num)
 {
