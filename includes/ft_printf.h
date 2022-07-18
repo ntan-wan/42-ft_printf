@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 10:46:08 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:26:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	fmt_init(t_fmt *fmt);
 
 void	fmt_update(char c, t_fmt *fmt);
 
-void	fmt_update_bonus(char c, t_fmt *fmt);
-
 int		fmt_operation(t_fmt *fmt, va_list args);
 
 int		print_c(int c);
@@ -63,7 +61,5 @@ int		print_hexa(unsigned int hexa, t_fmt *fmt);
 int		print_percent(void);
 
 int		print_unsi(unsigned int unsi);
-
-void	check_flags(const char *str, size_t *ptr_i, t_fmt *fmt);
 
 #endif
