@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 12:26:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:48:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,21 @@ typedef struct s_fmt
 	int		hash;
 	int		space;
 	int		plus;
+	int		width;
+	int		percision;
 }	t_fmt;
 
 void	fmt_init(t_fmt *fmt);
 
 void	fmt_update(char c, t_fmt *fmt);
 
+void	fmt_update_flags(char c, t_fmt *fmt);
+
 int		fmt_operation(t_fmt *fmt, va_list args);
 
-int		print_c(int c);
+int		print_c(t_fmt *fmt, int c);
 
-int		print_s(char *str);
+int		print_s(t_fmt *fmt, char *str);
 
 int		print_ptr(unsigned long ptr);
 

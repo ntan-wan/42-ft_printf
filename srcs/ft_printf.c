@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 10:39:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:16:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,22 @@
 // format specifier it is using.
 // fmt_operation = runs particular operation based on the format specifier.
 
-int	fmt_process(const char *str, size_t *ptr_i, va_list args)
+int	put_c(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+int	fmt_process(const char *str, va_list args, size_t *ptr_i)
 {
 	t_fmt	fmt;
 	int		print_len;
 
 	fmt_init(&fmt);
+	while (str[(*ptr_i) + 1] && !ft_strchr("cspdiuxX%", str[(*ptr_i) + 1]))
+	{
+		fmt_update_flags(str[(*ptr_i) + 1], &fmt);
+		(*ptr_i)++;
+	}
 	fmt_update(str[(*ptr_i) + 1], &fmt);
 	print_len = fmt_operation(&fmt, args);
 	return (print_len);
@@ -41,11 +51,11 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			print_len += fmt_process(str, &i, args);
+			print_len += fmt_process(str, args, &i);
 			i++;
 		}
 		else
-			print_len += print_c(str[i]);
+			print_len += put_c(str[i]);
 		i++;
 	}
 	va_end(args);

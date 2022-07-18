@@ -14,6 +14,7 @@ SRCS = ft_printf.c \
 	fmt_init.c \
 	fmt_update.c \
 	fmt_operation.c \
+	fmt_update_flags.c \
 	print_c.c \
 	print_s.c \
 	print_ptr.c \
