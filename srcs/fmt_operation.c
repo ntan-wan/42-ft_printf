@@ -6,14 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 19:10:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 18:48:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 09:56:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-// Used va_arg() function to point to the next variadic arguments and passed
-// into the functions accordingly.
+/*
+  Used va_arg() function to point to the next variadic arguments and pass it
+  into the functions accordingly.
+*/
 
 int	fmt_operation(t_fmt *fmt, va_list args)
 {

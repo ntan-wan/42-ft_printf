@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 09:51:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 10:40:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@
 
 int	put_c(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 int	fmt_process(const char **str, va_list args)

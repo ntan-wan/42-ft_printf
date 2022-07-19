@@ -6,21 +6,28 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:28:02 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 00:06:02 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 09:58:57 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-// Initialize print_len with 1 as a character guaranteed only 
-// return 1 character.
-// Only have to concerns with 'width' and 'negative' flags only.
-// <no flag> = print a character only.
-// <negative> only = runs the same as normal function,
-// i.e, only print one character.
-// <width> only = print 'spaces' first, then print 'character'.
-// <negative> + <width> = print 'character' first, then print 'spaces'.
+/*
+  Initialize print_len with 1 as a character guaranteed only 
+  return 1 character.
+
+  Only have to concerns with 'width' and 'negative' flags only.
+
+  <no flag> = print a character only.
+
+  <negative> only = runs the same as normal function,
+  i.e, only print one character.
+
+  <width> only = print 'spaces' first, then print 'character'.
+
+  <negative> + <width> = print 'character' first, then print 'spaces'.
+*/
 
 int	print_c(t_fmt *fmt, int c)
 {
