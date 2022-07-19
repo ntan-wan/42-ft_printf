@@ -6,7 +6,7 @@ int main() {
     int biggerPrecision = 16;
     const char *greetings = "Hello world";
 
-    printf("%d\n",printf("|%-c|\n", 'a'));
-    printf("%d\n",ft_printf("|%-c|\n", 'a'));
+    //printf("%d\n",printf("|%-10c|\n", 'a'));
+    printf("%d\n",ft_printf("|%-30c|\n", 'a'));
     return 0;
 }
