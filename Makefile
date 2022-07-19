@@ -49,6 +49,8 @@ $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)
 	@$(CC) $(CFLAGS) -c -I$(HEADER_PATH) $< -o $@
 
+bonus : $(NAME)
+
 clean :
 	@rm -rf $(OBJS_PATH)
 	@echo "\033[31mremoved: obj files (libftprintft.a)"

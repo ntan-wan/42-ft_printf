@@ -6,10 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 14:55:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:36:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+   <limits.h> is used in print_decimal. It uses the declration of INT_MIN.
+*/
 #ifndef FT_PRINTF_H
 
 # define FT_PRINTF_H
@@ -67,6 +70,9 @@ int		print_percent(t_fmt *fmt);
 
 int		print_unsi(unsigned int unsi);
 
-void		print_space(t_fmt *fmt, int space_count);
+// ft_uitoa is listed in print_unsi.
+char	*ft_uitoa(unsigned int n);
+
+void	print_space(t_fmt *fmt, int space_count);
 
 #endif
