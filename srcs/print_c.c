@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:28:02 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 09:58:57 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:22:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
   Initialize print_len with 1 as a character guaranteed only 
   return 1 character.
 
-  Only have to concerns with 'width' and 'negative' flags only.
+  Only have to concerns with <width> and <negative> flags only.
 
   <no flag> = print a character only.
 
@@ -38,7 +38,7 @@ int	print_c(t_fmt *fmt, int c)
 	if (fmt->width)
 	{
 		space_count = fmt->width - 1;
-		fmt->print_len += space_count;
+		fmt->print_len = fmt->width;
 		if (fmt->negative)
 		{
 			ft_putchar_fd(c, 1);

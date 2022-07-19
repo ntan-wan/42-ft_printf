@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 19:10:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 09:56:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:11:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	fmt_operation(t_fmt *fmt, va_list args)
 	else if (fmt->hexa_lower || fmt->hexa_upper)
 		print_len += print_hexa(va_arg(args, unsigned int), fmt);
 	else if (fmt->percent)
-		print_len += print_percent();
+		print_len += print_percent(fmt);
 	return (print_len);
 }

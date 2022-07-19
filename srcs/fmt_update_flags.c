@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:58:38 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 18:45:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:05:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	fmt_update_flags(char c, t_fmt *fmt)
 {
 	if (ft_isdigit(c))
 	{
-		if (fmt->dot || fmt->zero)
+		if (fmt->dot)
 			fmt->percision = (fmt->percision * 10) + (c - '0');
 		else
 		{
-			if (c == '0' && !fmt->width)
+			if (c == '0' && !fmt->width && !fmt->negative)
 				fmt->zero = 1;
 			else
 				fmt->width = (fmt->width * 10) + (c - '0');
