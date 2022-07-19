@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 12:11:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:55:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ int		print_s(t_fmt *fmt, char *str);
 
 int		print_ptr(unsigned long ptr);
 
-int		print_decimal(int num);
+int		print_decimal(t_fmt *fmt, int num);
 
 int		print_hexa(unsigned int hexa, t_fmt *fmt);
 
 int		print_percent(t_fmt *fmt);
 
 int		print_unsi(unsigned int unsi);
+
+void		print_space(t_fmt *fmt, int space_count);
 
 #endif
