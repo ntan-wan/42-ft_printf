@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:29 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 12:02:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:28:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	print_s(t_fmt *fmt, char *str)
 
 	str_len = ft_strlen(str);
 	fmt->print_len = str_len;
-	if (fmt->percision && fmt->percision < str_len)
+	if (fmt->percision < str_len)
 		fmt->print_len = fmt->percision;
 	if (fmt->width > str_len)
 	{
