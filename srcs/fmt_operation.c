@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 19:10:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 14:21:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 08:36:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fmt_operation(t_fmt *fmt, va_list args)
 	else if (fmt->unsi)
 		print_len += print_unsi(va_arg(args, unsigned int));
 	else if (fmt->hexa_lower || fmt->hexa_upper)
-		print_len += print_hexa(va_arg(args, unsigned int), fmt);
+		print_len += print_hexa(fmt, va_arg(args, unsigned int));
 	else if (fmt->percent)
 		print_len += print_percent(fmt);
 	return (print_len);

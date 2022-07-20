@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 11:04:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 08:56:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ char	*ft_uitoa(unsigned int n)
 		len--;
 	}
 	return (num);
+}
+
+char	*print_prefix(t_fmt, unsigned int unsi_num)
+{
+	char	*rtn;
+	int	unsi_num_len;
+	
+
 }
 
 int	print_unsi(unsigned int unsi_num)

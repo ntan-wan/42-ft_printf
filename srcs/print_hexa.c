@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 10:55:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 08:42:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_hexa_len(unsigned int num)
 	int	len;
 
 	len = 0;
+	if (num == 0)
+		return (1);
 	while (num > 0)
 	{
 		len++;
@@ -54,17 +56,12 @@ void	ft_put_hexa(unsigned int num, t_fmt *fmt)
 	}
 }
 
-int	print_hexa(unsigned int hexa, t_fmt *fmt)
+int	print_hexa(t_fmt *fmt, unsigned int hexa)
 {
 	int	print_len;
 
 	print_len = 0;
-	if (hexa == 0)
-		print_len += write(1, "0", 1);
-	else
-	{
-		ft_put_hexa(hexa, fmt);
-		print_len += ft_hexa_len(hexa);
-	}
+	ft_put_hexa(hexa, fmt);
+	print_len += ft_hexa_len(hexa);
 	return (print_len);
 }
