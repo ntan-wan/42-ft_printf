@@ -6,62 +6,99 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 08:42:55 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:20:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-// ft_hexa_len and ft_put_hexa are the same as ft_ptr_len and ft_put_ptr in 
-// print_ptr.
-// The only difference is the data type parameter,
-// i.e,unsigned int (hexa) vs unsigned long (ptr).
-// ft_put_hexa is a recursive function. The purpose of minus 10 is to align
-// number "10" with character 'a/A'.
+/*
+   convert_hexa :
+   Convert unsigned int to hexadecimal. 
+   First, determine which base you want to use. Next, allocate approriate memory 
+   with the help of hexa_len. After that, place the character obtained into the
+   'array' starting from the back. For example :
+   1234 -> 4D2
+        -> | | |2|
+		-> | |D|2|
+		-> |4|D|2|
+*/
 
-int	ft_hexa_len(unsigned int num)
+char	*convert_hexa(t_fmt *fmt, unsigned int num)
 {
-	int	len;
+	int		hexa_len;
+	char	*hexa_c;
+	char	*base;
 
-	len = 0;
+	base = "0123456789abcdef";
+	if (fmt->hexa_upper)
+		base = "0123456789ABCDEF";
+	hexa_len = ft_num_len(num, 16);
+	hexa_c = (char *)malloc(sizeof(char) * (hexa_len + 1));
+	if (!hexa_c)
+		return (0);
 	if (num == 0)
-		return (1);
-	while (num > 0)
+		hexa_c[0] = '0';
+	hexa_c[hexa_len] = '\0';
+	while (num != 0)
 	{
-		len++;
-		num = num / 16;
+		hexa_c[hexa_len - 1] = base[num % 16];
+		num /= 16;
+		hexa_len--;
 	}
-	return (len);
+	return (hexa_c);
 }
 
-void	ft_put_hexa(unsigned int num, t_fmt *fmt)
+void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
 {
-	if (num >= 16)
+	int		hexa_len;
+	int		space_count;
+	char	*hash_prefix;
+
+	hash_prefix = "0x";
+	if (fmt->hexa_upper)
+		hash_prefix = "0X";
+	hexa_len = ft_strlen(hexa_c);
+	if (fmt->space && !fmt->plus)
+		fmt->print_len += write(1, " ", 1);
+	if (fmt->hash && hexa_c[0] != '0')
+		fmt->print_len += write(1, hash_prefix, 2);
+	if (fmt->plus)
+		fmt->print_len += write(1, "+", 1);
+	if (fmt->percision > hexa_len)
 	{
-		ft_put_hexa(num / 16, fmt);
-		ft_put_hexa(num % 16, fmt);
+		space_count = fmt->percision - hexa_len;
+		while (space_count--)
+			fmt->print_len += write(1, "0", 1);
 	}
-	else
+}
+
+int	print_hexa(t_fmt *fmt, unsigned int num)
+{
+	char	*hexa_c;
+	int		space_count;
+
+	hexa_c = convert_hexa(fmt, num);
+	print_prefix_hexa(fmt, hexa_c);
+	fmt->print_len += ft_strlen(hexa_c);
+	if (fmt->width > fmt->print_len)
 	{
-		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
+		space_count = fmt->width - fmt->print_len;
+		fmt->print_len = fmt->width;
+		if (fmt->negative)
+		{
+			ft_putstr_fd(hexa_c, 1);
+			print_space(fmt, space_count);
+		}
 		else
 		{
-			if (fmt->hexa_lower)
-				ft_putchar_fd((num - 10 + 'a'), 1);
-			else if (fmt->hexa_upper)
-				ft_putchar_fd(num - 10 + 'A', 1);
+			print_space(fmt, space_count);
+			ft_putstr_fd(hexa_c, 1);
 		}
 	}
-}
-
-int	print_hexa(t_fmt *fmt, unsigned int hexa)
-{
-	int	print_len;
-
-	print_len = 0;
-	ft_put_hexa(hexa, fmt);
-	print_len += ft_hexa_len(hexa);
-	return (print_len);
+	else
+		ft_putstr_fd(hexa_c, 1);
+	free(hexa_c);
+	return (fmt->print_len);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:08:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 02:19:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:40:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,23 @@
    <zero> || <percision> = print '-' before number if the number is negative.
    return value = pointer to int or unsigned int in string format.
 
-   ft_uitoa is used to convert unsigned int to character(listed in print_unsi).
+   (listed in print_unsi)
+   ft_uitoa :
+   Convert unsigned int to character.
    When num is negative + percision or zero flag are raised, the outcome will
    look like this : ("%.4d", -14) -> -0014
    Therefore my printing order is "-", "00", "14".I need unsigned int in the end.
 
-   Double reverse unsigned int, -1 -> 4294967295, -4294967295 -> 1
+   (listed in print_unsi)
+   ft_num_len :
+   Count the number of digits of the number.
+
+   absolute :
+   Absolute the number.
+   Double reverse unsigned int, e.g : -1 
+   -1 -> 4294967295, -4294967295 -> 1 .
 */
+
 unsigned int	absolute(int num)
 {
 	unsigned int	unsi_num;
@@ -58,21 +68,6 @@ unsigned int	absolute(int num)
 		return (unsi_num);
 }
 
-int	calc_num_len(unsigned int unsi_num)
-{
-	int	len;
-
-	len = 0;
-	if (unsi_num == 0)
-		return (1);
-	while (unsi_num > 0)
-	{
-		len++;
-		unsi_num /= 10;
-	}
-	return (len);
-}
-
 char	*print_prefix(t_fmt *fmt, int num)
 {
 	char			*rtn;
@@ -81,7 +76,7 @@ char	*print_prefix(t_fmt *fmt, int num)
 	int				space_count;
 
 	unsi_num = absolute(num);
-	unsi_num_len = calc_num_len(unsi_num);
+	unsi_num_len = ft_num_len(unsi_num, 10);
 	if (fmt->space && !fmt->plus && num >= 0)
 		fmt->print_len += write(1, " ", 1);
 	if (fmt->plus && num >= 0)
