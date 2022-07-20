@@ -6,18 +6,21 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:17:22 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/18 11:00:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:26:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-// ft_ptr_len & ft_put_ptr are the same as ft_hexa_len
-// ft_put_hexa. The difference is the data type of
-// the parameter.
-// ft_put_hexa is a recursive function. The purpose of
-// minus 10 is to align number "10" with character 'a/A'.
+/*
+   ft_ptr_len & ft_put_ptr are the same as ft_hexa_len
+   ft_put_hexa. The difference is the data type of
+   the parameter.
+
+   ft_put_hexa is a recursive function. The purpose of
+   minus 10 is to align number "10" with character 'a/A'.
+*/
 
 int	ft_ptr_len(unsigned long num)
 {
@@ -48,7 +51,7 @@ void	ft_put_ptr(unsigned long num)
 	}
 }
 
-int	print_ptr(unsigned long ptr)
+int	print_ptr(t_fmt *fmt, unsigned long ptr)
 {
 	int	print_len;
 
