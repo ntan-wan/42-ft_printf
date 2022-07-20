@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:29 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 02:28:55 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:53:08 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,25 @@
 
    If no flags or <percision> only, we use the last statement to print
    out characters.
+
+   dot_percision_check :
+   <dot> only = meaning maximum characters can be printed out is 0.
+   <dot + percision> = only n(percision) characters can be printed out.
+   If characters is more than <percision>, the extra characters will be trimmed.
 */
 
 void	print_spaces(int space_count)
 {
 	while (space_count--)
 		ft_putchar_fd(' ', 1);
+}
+
+void	dot_percision_check(t_fmt *fmt, int str_len)
+{
+	if (fmt->dot && !fmt->percision)
+		fmt->print_len = 0;
+	else if (fmt->percision && fmt->percision < str_len)
+		fmt->print_len = fmt->percision;
 }
 
 int	print_s(t_fmt *fmt, char *str)
@@ -58,8 +71,7 @@ int	print_s(t_fmt *fmt, char *str)
 
 	str_len = ft_strlen(str);
 	fmt->print_len = str_len;
-	if (fmt->percision < str_len)
-		fmt->print_len = fmt->percision;
+	dot_percision_check(fmt, str_len);
 	if (fmt->width > str_len)
 	{
 		space_count = fmt->width - fmt->print_len;

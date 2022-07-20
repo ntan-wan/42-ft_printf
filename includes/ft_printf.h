@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 08:37:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:56:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		print_hexa(t_fmt *fmt, unsigned int hexa);
 
 int		print_percent(t_fmt *fmt);
 
-int		print_unsi(unsigned int unsi);
+int		print_unsi(t_fmt *fmt, unsigned int unsi);
 
 // ft_uitoa is listed in print_unsi.
 char	*ft_uitoa(unsigned int n);
