@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 19:10:42 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 20:25:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:53:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	fmt_operation(t_fmt *fmt, va_list args)
 	else if (fmt->str)
 		print_len += print_s(fmt, va_arg(args, char *));
 	else if (fmt->ptr)
-		print_len += print_ptr(fmt, va_arg(args, unsigned long));
+		print_len += print_ptr(fmt, va_arg(args, unsigned long long));
 	else if (fmt->decimal || fmt->integer)
 		print_len += print_decimal(fmt, va_arg(args, int));
 	else if (fmt->unsi)

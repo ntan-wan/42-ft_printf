@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:29 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 12:53:08 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:53:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,29 +64,35 @@ void	dot_percision_check(t_fmt *fmt, int str_len)
 		fmt->print_len = fmt->percision;
 }
 
+void	and_negative_flag_s(t_fmt *fmt, char *str)
+{
+	int	space_count;
+
+	space_count = fmt->width - fmt->print_len;
+	if (fmt->negative)
+	{
+		write(1, str, fmt->print_len);
+		print_spaces(space_count);
+	}
+	else
+	{
+		print_spaces(space_count);
+		write(1, str, fmt->print_len);
+	}
+	fmt->print_len = fmt->width;
+}
+
 int	print_s(t_fmt *fmt, char *str)
 {
 	int	str_len;
-	int	space_count;
 
+	if (!str)
+		str = "(null)";
 	str_len = ft_strlen(str);
 	fmt->print_len = str_len;
 	dot_percision_check(fmt, str_len);
 	if (fmt->width > str_len)
-	{
-		space_count = fmt->width - fmt->print_len;
-		if (fmt->negative)
-		{
-			write(1, str, fmt->print_len);
-			print_spaces(space_count);
-		}
-		else
-		{
-			print_spaces(space_count);
-			write(1, str, fmt->print_len);
-		}
-		fmt->print_len = fmt->width;
-	}
+		and_negative_flag_s(fmt, str);
 	else
 		write(1, str, fmt->print_len);
 	return (fmt->print_len);

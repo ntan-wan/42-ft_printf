@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:17:22 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 20:26:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:34:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,137 @@
 #include "../libft/libft.h"
 
 /*
-   ft_ptr_len & ft_put_ptr are the same as ft_hexa_len
-   ft_put_hexa. The difference is the data type of
-   the parameter.
+   Only concerns with <width>, <percision> and <negative> flags only.
 
-   ft_put_hexa is a recursive function. The purpose of
-   minus 10 is to align number "10" with character 'a/A'.
+   unsigned long long vs unsigned long :
+   Memory addresses are 32-bits(unsigned long) long on most CPU today. However
+   there is a increasing trend toward 64-bit(unsigned long long) addressing.
+   Therefore it is safer to use unsigned long long data type to store memory
+   address.
+   
+   ft_ptr_len vs ft_num_len :
+   ft_num_len only accept unsigned int data type as input. I'm passing
+   unsigned long long data type here, thus I created another function for it.
+
+   and_negative_flag_ptr :
+   This function deals with situation when negative flag is raised.
+
+   convert_ptr :
+   This function converts number to pointer format(hexadecimal).
+   I prefixed my character 'array' with "0x", and fill up the rest of the
+   'slots' with the correct characters.
+   I move my pointer to character 'array' up by 2 when I don't want 
+   to print out the prefix, "0x". For example :
+
+   |0|x|1|2|3|
+    ^
+    |
+
+    |0|x|1|2|3|
+         ^
+	 |
+
+   The only situation when I don't want to print out the prefix is when
+   <percision> > str_len(number converted to ptr) as I will print out 
+   the prefix using print_prefix_ptr.
+
+   print_prefix_ptr :
+   This function print out prefix accordingly. 
+   When <percision> > ptr_len - 2(minus out the prefix "0x"), '0' need 
+   to fill up addtional slot. For example :
+
 */
 
-int	ft_ptr_len(unsigned long num)
+int	ft_ptr_len(unsigned long long num, int base)
 {
 	int	len;
 
 	len = 0;
+	if (num == 0)
+		len++;
 	while (num > 0)
 	{
 		len++;
-		num = num / 16;
+		num /= base;
 	}
 	return (len);
 }
 
-void	ft_put_ptr(unsigned long num)
+char	*convert_ptr(unsigned long long ptr)
 {
-	if (num >= 16)
+	int		ptr_len;
+	char	*ptr_c;
+	char	*base;
+
+	base = "0123456789abcdef";
+	ptr_len = ft_ptr_len(ptr, 16);
+	ptr_c = (char *)malloc(sizeof(char) * (2 + ptr_len + 1));
+	if (!ptr_c)
+		return (0);
+	if (ptr == 0)
+		ptr_c[2] = '0';
+	ptr_c[0] = '0';
+	ptr_c[1] = 'x';
+	ptr_c[2 + ptr_len] = '\0';
+	while (ptr != 0)
 	{
-		ft_put_ptr(num / 16);
-		ft_put_ptr(num % 16);
+		ptr_c[2 + ptr_len - 1] = base[ptr % 16];
+		ptr /= 16;
+		ptr_len--;
 	}
-	else
+	return (ptr_c);
+}
+
+void	print_prefix_ptr(t_fmt *fmt, char *ptr_c)
+{
+	int	ptr_c_len;
+	int	space_count;
+
+	ptr_c_len = ft_strlen(ptr_c);
+	if (fmt->percision > (ptr_c_len - 2))
 	{
-		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
-		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
+		write(1, "0x", 2);
+		space_count = fmt->percision - (ptr_c_len - 2);
+		while (space_count--)
+			fmt->print_len += write(1, "0", 1);
 	}
 }
 
-int	print_ptr(t_fmt *fmt, unsigned long ptr)
+void	and_negative_flag_ptr(t_fmt *fmt, char *ptr_c)
 {
-	int	print_len;
+	int	space_count;
+	int	ptr_c_len;
 
-	print_len = write(1, "0x", 2);
-	if (ptr == 0)
-		print_len += write(1, "0", 1);
+	ptr_c_len = ft_strlen(ptr_c);
+	space_count = fmt->width - fmt->print_len;
+	if (fmt->width > 0)
+		fmt->print_len = fmt->width;
+	if (fmt->negative)
+	{
+		ft_putstr_fd(ptr_c, 1);
+		print_space(fmt, space_count);
+	}
 	else
 	{
-		ft_put_ptr(ptr);
-		print_len += ft_ptr_len(ptr);
+		print_space(fmt, space_count);
+		if (!(fmt->percision > (ptr_c_len - 2)))
+			ft_putstr_fd(ptr_c, 1);
+		else
+			ft_putstr_fd(ptr_c + 2, 1);
 	}
-	return (print_len);
+}
+
+int	print_ptr(t_fmt *fmt, unsigned long long ptr)
+{
+	char	*ptr_c;
+
+	ptr_c = convert_ptr(ptr);
+	print_prefix_ptr(fmt, ptr_c);
+	fmt->print_len += ft_strlen(ptr_c);
+	if (fmt->dot || (fmt->width > (int)ft_strlen(ptr_c)))
+		and_negative_flag_ptr(fmt, ptr_c);
+	else
+		ft_putstr_fd(ptr_c, 1);
+	free(ptr_c);
+	return (fmt->print_len);
 }

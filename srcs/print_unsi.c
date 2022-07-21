@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:39:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:42:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "../libft/libft.h"
 
 /*
-   Created ft_num_len to count number of digits in order to allocate appropriate
-   memory to it.
+   Created ft_num_len to count number of digits in order to allocate
+   appropriate memory to it.
 
-   Created uitoa instead of using itoa because itoa has only int data type parameter.
-   If the number exceed the range of int, itoa will not convert unsigned number
-   into the right number in int data type context.
+   Created uitoa instead of using itoa because itoa has only int data 
+   type parameter. If the number exceed the range of int, itoa will not 
+   convert unsigned number into the right number in int data type context.
 
    ft_uitoa :
    place character from the end of the 'array' first, gradually
@@ -32,8 +32,8 @@
    print prefix in respond to the flags accordingly.
    The difference between print_prefix in print_decimal is we do not have to
    deal with negative number here. Therefore no need to print '-' as prefix.
-   For example, in print_decimal case, ("%.4d", -14) -> -0014. The printing order is
-   "-", "00" and "14".
+   For example, in print_decimal case, ("%.4d", -14) -> -0014. The printing
+   order is "-", "00" and "14".
 */
 
 int	ft_num_len(unsigned int num, int base)

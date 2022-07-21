@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:08:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 13:40:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:03:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,13 @@ int	print_decimal(t_fmt *fmt, int num)
 {
 	char	*num_c;
 	int		space_count;
-
-	num_c = print_prefix(fmt, num);
-	fmt->print_len += ft_strlen(num_c);
+	
+	num_c = "";
+	if (num != 0 || fmt->percision || !fmt->dot)
+	{
+		num_c = print_prefix(fmt, num);
+		fmt->print_len += ft_strlen(num_c);
+	}
 	if (fmt->width > fmt->print_len)
 	{
 		space_count = fmt->width - fmt->print_len;
@@ -115,12 +119,15 @@ int	print_decimal(t_fmt *fmt, int num)
 		}
 		else
 		{
+			//
 			print_space(fmt, space_count);
 			ft_putstr_fd(num_c, 1);
 		}
 	}
 	else
 		ft_putstr_fd(num_c, 1);
-	free(num_c);
+	
+	if (num != 0 || fmt->percision || !fmt->dot)
+		free(num_c);
 	return (fmt->print_len);
 }

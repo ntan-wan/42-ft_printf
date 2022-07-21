@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 20:25:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:54:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		print_c(t_fmt *fmt, int c);
 
 int		print_s(t_fmt *fmt, char *str);
 
-int		print_ptr(t_fmt *fmt, unsigned long ptr);
+int		print_ptr(t_fmt *fmt, unsigned long long ptr);
 
 int		print_decimal(t_fmt *fmt, int num);
 
