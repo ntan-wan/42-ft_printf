@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/22 04:23:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:30:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_fmt
 	int		width;
 	int		percision;
 	int		pads;
+	int		sign_space;
 }	t_fmt;
 
 void	fmt_init(t_fmt *fmt);
