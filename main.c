@@ -6,8 +6,12 @@ int main() {
     int biggerPrecision = 16;
     const char *greetings = "Hello world";
 
-    printf("%d\n",printf("|%01.1d|\n", 0));
-    printf("%d\n",ft_printf("|%01.d|\n", 0));
+    printf("%d\n",printf("|%2.20d|\n", 42000));
+    printf("%d\n",printf("|%.20d|\n", 42000));
+    printf("%d\n",printf("|%+042d|\n", 42000));
+    printf("%d\n",ft_printf("|%042.20d|\n", 42000));
+    printf("%d\n",ft_printf("|%.20d|\n", 42000));
+    printf("%d\n",ft_printf("|%+042d|\n", 42000));
     //printf("%d\n",ft_printf("|%-.d|\n", 0)); return 0;
 
 /*TEST(27, print(" %-11p %-12p ", INT_MIN, INT_MAX));

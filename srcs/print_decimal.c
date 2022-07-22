@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:08:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/21 19:03:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/22 11:07:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@
    Absolute the number.
    Double reverse unsigned int, e.g : -1 
    -1 -> 4294967295, -4294967295 -> 1 .
+   
+   zero dot+percision 
+   (print_len - pads && space -> prefix order) percision > str_len
 */
 
 unsigned int	absolute(int num)
@@ -103,6 +106,8 @@ int	print_decimal(t_fmt *fmt, int num)
 	int		space_count;
 	
 	num_c = "";
+	if (fmt->zero && fmt->dot)
+		fmt->zero = 0;
 	if (num != 0 || fmt->percision || !fmt->dot)
 	{
 		num_c = print_prefix(fmt, num);
@@ -119,7 +124,6 @@ int	print_decimal(t_fmt *fmt, int num)
 		}
 		else
 		{
-			//
 			print_space(fmt, space_count);
 			ft_putstr_fd(num_c, 1);
 		}
