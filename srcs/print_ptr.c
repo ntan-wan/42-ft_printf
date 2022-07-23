@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:17:22 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/21 13:34:56 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:43:17 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@
 	 |
 
    The only situation when I don't want to print out the prefix is when
-   <percision> > str_len(number converted to ptr) as I will print out 
+   <percision> > ptr_c_len - 2(minus out the prefix "0x") as I will print out 
    the prefix using print_prefix_ptr.
 
    print_prefix_ptr :
    This function print out prefix accordingly. 
-   When <percision> > ptr_len - 2(minus out the prefix "0x"), '0' need 
-   to fill up addtional slot. For example :
-
+   When <percision> > ptr_c_len - 2(minus out the prefix "0x"), '0' will
+   fill up addtional slots. For example :
+   ("%.3p", 10) -> 0x00a
+   The printing order is : "0x" -> "00" -> "a"
+   
+   and_negative_flag_ptr :
+   This function handles 
 */
 
 int	ft_ptr_len(unsigned long long num, int base)
