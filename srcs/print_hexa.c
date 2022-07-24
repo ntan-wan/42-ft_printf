@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 20:11:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:35:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ void	flags_hexa(t_fmt *fmt, int hexa_len, int hexa_c_len)
 	if (fmt->width > fmt->pad + hexa_len)
 		fmt->offset = fmt->width - fmt->pad - hexa_len;
 	fmt->print_len += fmt->offset + fmt->pad + hexa_len;
-}
-
-void	print_order_hexa(t_fmt *fmt, char *hexa_c)
-{
 	if (fmt->zero && !fmt->dot)
 	{
 		fmt->pad = fmt->offset;
 		fmt->offset = 0;
 	}
+}
+
+void	print_order_hexa(t_fmt *fmt, char *hexa_c)
+{
 	if (fmt->negative)
 	{
 		print_prefix_hexa(fmt, hexa_c);

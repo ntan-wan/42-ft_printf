@@ -25,6 +25,7 @@ SRCS = ft_printf.c \
 	print_percent.c \
 	print_space.c \
 	print_prefix_nbr.c \
+	print_prefix_unsi.c \
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 

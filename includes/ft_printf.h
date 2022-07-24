@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 17:57:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:20:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int		print_percent(t_fmt *fmt);
 
 int		print_unsi(t_fmt *fmt, unsigned int unsi);
 
-void		print_prefix_nbr(t_fmt *fmt, int num, char *unsi_num_c);
+void	print_prefix_unsi(t_fmt *fmt, char *unsi_num_c);
 
-// ft_uitoa is listed in print_unsi.
+void	print_prefix_nbr(t_fmt *fmt, int num, char *unsi_num_c);
+
 char	*ft_uitoa(unsigned int n);
 
-// ft_num_len is listed in print_unsi.
 int		calc_unsi_num_len(unsigned int num, int base);
 
 void	print_space(t_fmt *fmt, int space_count);
