@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 17:41:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 10:40:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:15:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
    fmt_update_flags will process the in-between characters. It will check which
    flags are being raised and store this info in struct t_fmt.
 
-   fmt_update will store "c/s/p/d/i/u/x/X/%" in struct t_fmt as well.
+   fmt_update will store "c/s/p/d/i/u/x/X/%" in struct t_fmt instead.
 
    fmt_operation will carry out actions accordingly to the infos stored in
    struct t_fmt.

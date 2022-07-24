@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:01:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:57:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ char	*ft_uitoa(unsigned int n);
 int		calc_unsi_num_len(unsigned int num, int base);
 
 void	print_space(t_fmt *fmt, int space_count);
+
+unsigned int	absolute(int num);
 
 #endif

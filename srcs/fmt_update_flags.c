@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:58:38 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/22 14:46:55 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:12:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../libft/libft.h"
 
 /*
-   This function is to store info about flags.
+   This function stores info about flags.
 
    If the character is a digit, we convert it into a number using the formula
    below.
@@ -26,6 +26,7 @@
    if fmt->width is not "true", meaning no number appeared in the string, '0'
    is a flag indeed then.
 */
+
 void	fmt_update_flags(char c, t_fmt *fmt)
 {
 	if (ft_isdigit(c))

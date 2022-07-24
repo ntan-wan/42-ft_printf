@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_space.c                                      :+:      :+:    :+:   */
+/*   absolute.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 14:54:25 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 21:05:19 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/07/24 17:53:23 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/07/24 18:02:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-/*
-	This function is used in print_percent and print_ptr to
-	print spaces.
-*/
-
-void	print_space(t_fmt *fmt, int space_count)
+unsigned int	absolute(int num)
 {
-	char	space;
+	unsigned int	unsi_num;
 
-	space = ' ';
-	if (fmt->zero && !fmt->ptr)
-		space = '0';
-	while (space_count-- > 0)
-		ft_putchar_fd(space, 1);
+	unsi_num = num;
+	if (num < 0)
+	{
+		unsi_num = -unsi_num;
+		return (unsi_num);
+	}
+	else
+		return (unsi_num);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:17:22 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/22 21:43:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:08:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,18 @@
    The printing order is : "0x" -> "00" -> "a"
    
    and_negative_flag_ptr :
-   This function handles 
+   This function handles the printing order.
+   1. If <negative> flag is raised:
+      'spaces' are printed after number characters.
+   2. If <negative> flag is not raised:
+      'spaces' are printed before number characters. 
+
+   (listed in print_space.c)
+   print_space :
+   Print spaces accordingly. Duhhh
+
+   print_ptr :
+   The core function.
 */
 
 int	ft_ptr_len(unsigned long long num, int base)

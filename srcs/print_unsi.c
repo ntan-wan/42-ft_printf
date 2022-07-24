@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:59:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:27:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:17:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,53 +71,6 @@ char	*ft_uitoa(unsigned int n)
 	}
 	return (num);
 }
-/*
-void	print_prefix_unsi(t_fmt *fmt, unsigned int unsi_num)
-{
-	int		unsi_num_len;
-	int		space_count;
-
-	unsi_num_len = calc_unsi_num_len(unsi_num, 10);
-	if (fmt->space && !fmt->plus)
-		fmt->print_len += write(1, " ", 1);
-	if (fmt->plus)
-		fmt->print_len += write(1, "+", 1);
-	if (fmt->percision > unsi_num_len)
-	{
-		space_count = fmt->percision - unsi_num_len;
-		while (space_count--)
-			fmt->print_len += write(1, "0", 1);
-	}
-}
-
-int	print_unsi(t_fmt *fmt, unsigned int unsi_num)
-{
-	char	*unsi_num_c;
-	int		space_count;
-
-	print_prefix_unsi(fmt, unsi_num);
-	unsi_num_c = ft_uitoa(unsi_num);
-	fmt->print_len += ft_strlen(unsi_num_c);
-	if (fmt->width > fmt->print_len)
-	{
-		space_count = fmt->width - fmt->print_len;
-		fmt->print_len = fmt->width;
-		if (fmt->negative)
-		{
-			ft_putstr_fd(unsi_num_c, 1);
-			print_space(fmt, space_count);
-		}
-		else
-		{
-			print_space(fmt, space_count);
-			ft_putstr_fd(unsi_num_c, 1);
-		}
-	}
-	else
-		ft_putstr_fd(unsi_num_c, 1);
-	free(unsi_num_c);
-	return (fmt->print_len);
-}*/
 
 void	print_prefix_unsi(t_fmt *fmt, char *unsi_num_c)
 {
@@ -128,6 +81,17 @@ void	print_prefix_unsi(t_fmt *fmt, char *unsi_num_c)
 	while (fmt->pad-- > 0)
 		ft_putchar_fd('0', 1);
 	ft_putstr_fd(unsi_num_c, 1);
+}
+
+void	flags_unsi(t_fmt *fmt, int unsi_num_len, int unsi_num_c_len)
+{
+	if (fmt->percision > unsi_num_c_len)
+		fmt->pad = fmt->percision - unsi_num_c_len;
+	if (fmt->width > fmt->pad + unsi_num_len)
+		fmt->offset = fmt->width - fmt->pad - unsi_num_len;
+	if ((fmt->space || fmt->plus) && ++fmt->print_len && fmt->offset)
+		--fmt->offset;
+	fmt->print_len += fmt->offset + fmt->pad + unsi_num_len;
 }
 
 int	print_unsi(t_fmt *fmt, unsigned int unsi_num)
@@ -144,13 +108,7 @@ int	print_unsi(t_fmt *fmt, unsigned int unsi_num)
 		unsi_num_c = ft_uitoa(unsi_num);
 	}
 	unsi_num_c_len = (int)ft_strlen(unsi_num_c);
-	if (fmt->percision > unsi_num_c_len)
-		fmt->pad = fmt->percision - unsi_num_c_len;
-	if (fmt->width > fmt->pad + unsi_num_len)
-		fmt->offset = fmt->width - fmt->pad - unsi_num_len;
-	if ((fmt->space || fmt->plus) && ++fmt->print_len && fmt->offset)
-		--fmt->offset;
-	fmt->print_len += fmt->offset + fmt->pad + unsi_num_len;
+	flags_unsi(fmt, unsi_num_len, unsi_num_c_len);
 	if (fmt->zero && !fmt->dot)
 	{
 		fmt->pad = fmt->offset;

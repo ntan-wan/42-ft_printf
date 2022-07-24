@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:26:10 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/19 14:59:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:09:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
    If there is <zero>, we change 'spaces' to 'zero' instead. This is
    handled in print_space funtion.
+
+   print_space :
+   Print spaces accordingly. 
 */
 
 int	print_percent(t_fmt *fmt)

@@ -11,6 +11,7 @@ SRCS_PATH = srcs/
 OBJS_PATH = $(SRCS_PATH)objs/
 
 SRCS = ft_printf.c \
+	absolute.c \
 	fmt_init.c \
 	fmt_update.c \
 	fmt_operation.c \

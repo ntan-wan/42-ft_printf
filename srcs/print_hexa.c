@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 15:14:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 20:11:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,34 @@
    'array' starting from the back. For example :
    1234 -> 4D2
         -> | | |2|
-		-> | |D|2|
-		-> |4|D|2|
+	-> | |D|2|
+	-> |4|D|2|
+   
+   print_prefix_hexa :
+   Print prefix for hexadecimal.
+   1. " if (fmt->hash && hexa_c[0] != '0') ":
+      Print  prefix "0x" or "0X" only if <hash> flag is raised and the number
+      is not 0.
+
+   flags_hexa :
+   1. If <hash> flag is raised and there is width value:
+      Subtract 2 from width value because the width value here control
+      offset value too. Print 2 less offset as two 'slots' are reserved
+      for "0x" or "0X".
+   2. If percision value > hexa characters' length:
+      pad value is equal to percision value - hexa characters' length.
+
+   print_order_hexa :
+   Decides how the output looks like.
+
+   print_hexa :
+   The core function.
+   1. " if (unsi_num != 0 || !fmt->dot || fmt->percision) ":
+      Prevent memory from being allocated when these conditons are 
+      satisfied : num is 0, <dot> flag is raised and there is no
+      percision value.
+      e.g : ("%.x", 0) -> (nothing should print out, thus no
+      memory should be allocated).
 */
 
 char	*convert_hexa(t_fmt *fmt, unsigned int unsi_num)
@@ -50,62 +76,8 @@ char	*convert_hexa(t_fmt *fmt, unsigned int unsi_num)
 	return (hexa_c);
 }
 
-/*void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
-{
-	int		hexa_len;
-	int		space_count;
-	char	*hash_prefix;
-
-	hash_prefix = "0x";
-	if (fmt->hexa_upper)
-		hash_prefix = "0X";
-	hexa_len = ft_strlen(hexa_c);
-	if (fmt->space && !fmt->plus)
-		fmt->print_len += write(1, " ", 1);
-	if (fmt->hash && hexa_c[0] != '0')
-		fmt->print_len += write(1, hash_prefix, 2);
-	if (fmt->plus)
-		fmt->print_len += write(1, "+", 1);
-	if (fmt->percision > hexa_len)
-	{
-		space_count = fmt->percision - hexa_len;
-		while (space_count--)
-			fmt->print_len += write(1, "0", 1);
-	}
-}
-
-int	print_hexa(t_fmt *fmt, unsigned int num)
-{
-	char	*hexa_c;
-	int		space_count;
-
-	hexa_c = convert_hexa(fmt, num);
-	print_prefix_hexa(fmt, hexa_c);
-	fmt->print_len += ft_strlen(hexa_c);
-	if (fmt->width > fmt->print_len)
-	{
-		space_count = fmt->width - fmt->print_len;
-		fmt->print_len = fmt->width;
-		if (fmt->negative)
-		{
-			ft_putstr_fd(hexa_c, 1);
-			print_space(fmt, space_count);
-		}
-		else
-		{
-			print_space(fmt, space_count);
-			ft_putstr_fd(hexa_c, 1);
-		}
-	}
-	else
-		ft_putstr_fd(hexa_c, 1);
-	free(hexa_c);
-	return (fmt->print_len);
-}*/
-
 void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
 {
-	//
 	if (fmt->hash && hexa_c[0] != '0')
 	{
 		if (fmt->hexa_lower)
@@ -118,20 +90,8 @@ void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
 	ft_putstr_fd(hexa_c, 1);
 }
 
-int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
+void	flags_hexa(t_fmt *fmt, int hexa_len, int hexa_c_len)
 {
-	char	*hexa_c;
-	int	hexa_c_len;
-	int	hexa_len;
-	
-	hexa_c = "";
-	hexa_len = 0;
-	if (unsi_num != 0 || !fmt->dot || fmt->percision)
-	{
-		hexa_c = convert_hexa(fmt, unsi_num);
-		hexa_len = calc_unsi_num_len(unsi_num, 16);
-	}
-	hexa_c_len = (int)ft_strlen(hexa_c);
 	if (fmt->hash && fmt->width)
 		fmt->width -= 2;
 	if (fmt->percision > hexa_c_len)
@@ -139,6 +99,10 @@ int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
 	if (fmt->width > fmt->pad + hexa_len)
 		fmt->offset = fmt->width - fmt->pad - hexa_len;
 	fmt->print_len += fmt->offset + fmt->pad + hexa_len;
+}
+
+void	print_order_hexa(t_fmt *fmt, char *hexa_c)
+{
 	if (fmt->zero && !fmt->dot)
 	{
 		fmt->pad = fmt->offset;
@@ -156,6 +120,24 @@ int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
 			ft_putchar_fd(' ', 1);
 		print_prefix_hexa(fmt, hexa_c);
 	}
+}
+
+int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
+{
+	char	*hexa_c;
+	int		hexa_c_len;
+	int		hexa_len;
+
+	hexa_c = "";
+	hexa_len = 0;
+	if (unsi_num != 0 || !fmt->dot || fmt->percision)
+	{
+		hexa_c = convert_hexa(fmt, unsi_num);
+		hexa_len = calc_unsi_num_len(unsi_num, 16);
+	}
+	hexa_c_len = (int)ft_strlen(hexa_c);
+	flags_hexa(fmt, hexa_len, hexa_c_len);
+	print_order(fmt, hexa_c);
 	if (unsi_num != 0 || !fmt->dot || fmt->percision)
 		free(hexa_c);
 	return (fmt->print_len);
