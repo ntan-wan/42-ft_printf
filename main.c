@@ -24,6 +24,7 @@ int main() {
 // str_len less than width and percision && percision more than width 
 // pads + print_len + sign+spacejJm
 
-printf("%d\n", ft_printf("|%01.2d|\n", -4));
-printf("%d\n", printf("|%01.2d|\n", -4));
+//printf("%d\n", ft_printf("|%01.2d|\n", -4));
+   printf("%d\n",ft_printf("|%10.1s|\n", "21-school.ru"));
+   printf("%d\n",printf("|%10.1s|\n", "21-school.ru"));
 }

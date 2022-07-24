@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 04:01:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:01:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		print_prefix_nbr(t_fmt *fmt, int num, char *unsi_num_c);
 char	*ft_uitoa(unsigned int n);
 
 // ft_num_len is listed in print_unsi.
-int		ft_num_len(unsigned int num, int base);
+int		calc_unsi_num_len(unsigned int num, int base);
 
 void	print_space(t_fmt *fmt, int space_count);
 

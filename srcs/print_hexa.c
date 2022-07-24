@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/20 20:20:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:14:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 		-> |4|D|2|
 */
 
-char	*convert_hexa(t_fmt *fmt, unsigned int num)
+char	*convert_hexa(t_fmt *fmt, unsigned int unsi_num)
 {
 	int		hexa_len;
 	char	*hexa_c;
@@ -34,23 +34,23 @@ char	*convert_hexa(t_fmt *fmt, unsigned int num)
 	base = "0123456789abcdef";
 	if (fmt->hexa_upper)
 		base = "0123456789ABCDEF";
-	hexa_len = ft_num_len(num, 16);
+	hexa_len = calc_unsi_num_len(unsi_num, 16);
 	hexa_c = (char *)malloc(sizeof(char) * (hexa_len + 1));
 	if (!hexa_c)
 		return (0);
-	if (num == 0)
+	if (unsi_num == 0)
 		hexa_c[0] = '0';
 	hexa_c[hexa_len] = '\0';
-	while (num != 0)
+	while (unsi_num != 0)
 	{
-		hexa_c[hexa_len - 1] = base[num % 16];
-		num /= 16;
+		hexa_c[hexa_len - 1] = base[unsi_num % 16];
+		unsi_num /= 16;
 		hexa_len--;
 	}
 	return (hexa_c);
 }
 
-void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
+/*void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
 {
 	int		hexa_len;
 	int		space_count;
@@ -100,5 +100,63 @@ int	print_hexa(t_fmt *fmt, unsigned int num)
 	else
 		ft_putstr_fd(hexa_c, 1);
 	free(hexa_c);
+	return (fmt->print_len);
+}*/
+
+void	print_prefix_hexa(t_fmt *fmt, char *hexa_c)
+{
+	//
+	if (fmt->hash && hexa_c[0] != '0')
+	{
+		if (fmt->hexa_lower)
+			fmt->print_len += write(1, "0x", 2);
+		else if (fmt->hexa_upper)
+			fmt->print_len += write(1, "0X", 2);
+	}
+	while (fmt->pad-- > 0)
+		ft_putchar_fd('0', 1);
+	ft_putstr_fd(hexa_c, 1);
+}
+
+int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
+{
+	char	*hexa_c;
+	int	hexa_c_len;
+	int	hexa_len;
+	
+	hexa_c = "";
+	hexa_len = 0;
+	if (unsi_num != 0 || !fmt->dot || fmt->percision)
+	{
+		hexa_c = convert_hexa(fmt, unsi_num);
+		hexa_len = calc_unsi_num_len(unsi_num, 16);
+	}
+	hexa_c_len = (int)ft_strlen(hexa_c);
+	if (fmt->hash && fmt->width)
+		fmt->width -= 2;
+	if (fmt->percision > hexa_c_len)
+		fmt->pad = fmt->percision - hexa_c_len;
+	if (fmt->width > fmt->pad + hexa_len)
+		fmt->offset = fmt->width - fmt->pad - hexa_len;
+	fmt->print_len += fmt->offset + fmt->pad + hexa_len;
+	if (fmt->zero && !fmt->dot)
+	{
+		fmt->pad = fmt->offset;
+		fmt->offset = 0;
+	}
+	if (fmt->negative)
+	{
+		print_prefix_hexa(fmt, hexa_c);
+		while (fmt->offset--)
+			ft_putchar_fd(' ', 1);
+	}
+	else
+	{
+		while (fmt->offset--)
+			ft_putchar_fd(' ', 1);
+		print_prefix_hexa(fmt, hexa_c);
+	}
+	if (unsi_num != 0 || !fmt->dot || fmt->percision)
+		free(hexa_c);
 	return (fmt->print_len);
 }
