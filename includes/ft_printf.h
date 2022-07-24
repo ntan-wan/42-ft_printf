@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 09:18:31 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/22 15:30:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 04:01:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_fmt
 	int		plus;
 	int		width;
 	int		percision;
-	int		pads;
-	int		sign_space;
+	int		pad;
+	int		offset;
 }	t_fmt;
 
 void	fmt_init(t_fmt *fmt);
@@ -71,6 +71,8 @@ int		print_hexa(t_fmt *fmt, unsigned int num);
 int		print_percent(t_fmt *fmt);
 
 int		print_unsi(t_fmt *fmt, unsigned int unsi);
+
+void		print_prefix_nbr(t_fmt *fmt, int num, char *unsi_num_c);
 
 // ft_uitoa is listed in print_unsi.
 char	*ft_uitoa(unsigned int n);

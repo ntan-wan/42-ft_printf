@@ -23,6 +23,7 @@ int main() {
 //printf("%d\n",ft_printf("|%-15.5d|\n", 5000));
 // str_len less than width and percision && percision more than width 
 // pads + print_len + sign+spacejJm
-  printf("%d\n", printf("|%0014.2d|\n", (int)-2147483648));
-  printf("%d\n", ft_printf("|%0014.2d|\n", (int)-2147483648));
+
+printf("%d\n", ft_printf("|%01.2d|\n", -4));
+printf("%d\n", printf("|%01.2d|\n", -4));
 }
