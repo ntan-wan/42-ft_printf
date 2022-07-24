@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:02:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/07/24 21:35:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:25:57 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	print_hexa(t_fmt *fmt, unsigned int unsi_num)
 	}
 	hexa_c_len = (int)ft_strlen(hexa_c);
 	flags_hexa(fmt, hexa_len, hexa_c_len);
-	print_order(fmt, hexa_c);
+	print_order_hexa(fmt, hexa_c);
 	if (unsi_num != 0 || !fmt->dot || fmt->percision)
 		free(hexa_c);
 	return (fmt->print_len);
