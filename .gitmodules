@@ -4,3 +4,6 @@
 [submodule "tester2"]
 	path = tester2
 	url = https://github.com/paulo-santana/ft_printf_tester
+[submodule "tester3"]
+	path = tester3
+	url = https://github.com/wangxuerui2003/42_ft_printf_tester
